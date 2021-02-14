@@ -52,14 +52,15 @@ class ProductItem extends HTMLElement {
     button.onclick = function(){
         if(button.innerHTML == "Add to Cart"){
           button.innerHTML = "Remove from Cart";
-          
+          cartCounts.innerHTML+=1;
           localStorage.setItem(item_id,1)
-          localStorage.setItem('cartCounts', cartCounts.innerHTML++);
+          localStorage.setItem('cartCounts', cartCounts.innerHTML);
         }else{
           button.textContent = "Add to Cart";
           
           localStorage.removeItem(item_id);
-          localStorage.setItem('cartCounts', cartCounts.innerHTML--);
+          cartCounts.innerHTML-=1
+          localStorage.setItem('cartCounts', cartCounts.innerHTML);
         }
     }
     button.textContent = localStorage.getItem(item_id)? "Remove from Cart": "Add to Cart";
